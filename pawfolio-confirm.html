@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pawfolio - Confirm Your Email</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #2a2a2a;
+            --pawfolio-accent: #f59e0b;
+            --pawfolio-accent-hover: #fbbf24;
+            --success: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at top, #1a1209 0%, var(--bg-primary) 70%);
+        }
+
+        .confirm-container {
+            max-width: 480px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--pawfolio-accent) 0%, #d97706 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            box-shadow: 0 16px 48px rgba(245, 158, 11, 0.25);
+        }
+
+        .app-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+        }
+
+        .check-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .check-icon svg {
+            color: var(--success);
+        }
+
+        .card h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .card .description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-highlight {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .email-highlight .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--pawfolio-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .email-highlight .email {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
+
+        .btn-open-app {
+            display: block;
+            width: 100%;
+            background: var(--pawfolio-accent);
+            color: #0a0a0a;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-family: inherit;
+            margin-bottom: 1rem;
+        }
+
+        .btn-open-app:hover {
+            background: var(--pawfolio-accent-hover);
+            color: #0a0a0a;
+            transform: translateY(-1px);
+        }
+
+        .resend-link {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .resend-link a,
+        .resend-link button {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .resend-link a:hover,
+        .resend-link button:hover {
+            color: var(--pawfolio-accent);
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 1.5rem 0;
+        }
+
+        .help-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .help-text a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .help-text a:hover {
+            color: var(--text-primary);
+        }
+
+        /* State: error */
+        .state-error .check-icon {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .state-error .check-icon svg {
+            color: #ef4444;
+        }
+
+        /* State: already confirmed */
+        .state-already .check-icon {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .state-already .check-icon svg {
+            color: #6366f1;
+        }
+
+        @media (max-width: 480px) {
+            .confirm-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="confirm-container">
+        <div class="app-icon">&#x1F43E;</div>
+        <div class="app-name">Pawfolio</div>
+
+        <div class="card" id="confirm-card">
+            <div class="check-icon">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+            </div>
+            <h1>Email Confirmed</h1>
+            <p class="description">Your email address has been successfully verified. You're all set to start using
+                Pawfolio.</p>
+
+            <div class="email-highlight" id="email-highlight" style="display: none;">
+                <div class="label">Confirmed email</div>
+                <div class="email" id="confirmed-email"></div>
+            </div>
+
+            <a href="pawfolio://" class="btn-open-app" id="open-app-btn">Open Pawfolio</a>
+
+            <hr class="divider">
+
+            <p class="help-text">
+                Don't have the app yet? <a href="pawfolio.html">Download Pawfolio</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Read email from URL params if provided (e.g. ?email=user@example.com)
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
+        const status = params.get('status'); // 'error' | 'already' | null (default = success)
+
+        if (email) {
+            const highlight = document.getElementById('email-highlight');
+            document.getElementById('confirmed-email').textContent = email;
+            highlight.style.display = 'block';
+        }
+
+        if (status === 'error') {
+            const card = document.getElementById('confirm-card');
+            card.classList.add('state-error');
+            card.querySelector('h1').textContent = 'Confirmation Failed';
+            card.querySelector('.description').textContent =
+                'This confirmation link is invalid or has expired. Please request a new one from the app.';
+            document.getElementById('open-app-btn').textContent = 'Back to Pawfolio';
+        } else if (status === 'already') {
+            const card = document.getElementById('confirm-card');
+            card.classList.add('state-already');
+            card.querySelector('h1').textContent = 'Already Confirmed';
+            card.querySelector('.description').textContent =
+                'This email address has already been verified. You can go ahead and open the app.';
+        }
+    </script>
+</body>
+
+</html>

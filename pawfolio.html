@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pawfolio - iOS Pet Management App</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --border-color: #2a2a2a;
+            --pawfolio-accent: #f59e0b;
+            --pawfolio-accent-hover: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            margin-left: 1.5rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary) !important;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: radial-gradient(ellipse at top, #1a1209 0%, var(--bg-primary) 70%);
+        }
+
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, var(--pawfolio-accent) 0%, #d97706 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pawfolio-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-download {
+            background: var(--pawfolio-accent);
+            color: #0a0a0a;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--pawfolio-accent-hover);
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--bg-card);
+            color: white;
+            border-color: var(--text-secondary);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-section {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--pawfolio-accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--pawfolio-accent) 0%, #d97706 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0.25rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--pawfolio-accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section {
+            background-color: var(--bg-primary);
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            height: 100%;
+        }
+
+        .info-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pawfolio-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .footer a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--pawfolio-accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px 60px;
+                min-height: 80vh;
+            }
+
+            .btn-secondary-custom {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">SMLabs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="experience.html">Experience</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="app-icon">&#x1F43E;</div>
+            <p class="subtitle">iOS App</p>
+            <h1>Pawfolio</h1>
+            <p class="tagline">The all-in-one pet management app to keep your furry friends healthy and happy.</p>
+            <div class="status-badge">Coming Soon to the App Store</div>
+            <div>
+                <a href="#" class="btn-download">Download on the App Store</a>
+                <a href="#features" class="btn-secondary-custom">See Features</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section features-section">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Everything for your pets</h2>
+                    <p class="section-subtitle">Pawfolio brings all your pet care needs into one beautifully designed
+                        iOS app.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x1F4CB;</div>
+                        <h3>Pet Profiles</h3>
+                        <p>Create detailed profiles for each of your pets with photos, breed info, and important
+                            details all in one place.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x1F48A;</div>
+                        <h3>Health Records</h3>
+                        <p>Track vaccinations, medications, vet visits, and health history. Never miss an important
+                            health milestone.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x1F514;</div>
+                        <h3>Reminders</h3>
+                        <p>Set smart reminders for feeding, medications, grooming, and vet appointments. Your pets
+                            will thank you.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x1F4C8;</div>
+                        <h3>Weight Tracking</h3>
+                        <p>Monitor your pet's weight over time with visual charts to keep them in tip-top shape.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x1F4F8;</div>
+                        <h3>Photo Journal</h3>
+                        <p>Capture and organise precious memories with a dedicated photo journal for each of your
+                            pets.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#x2601;&#xFE0F;</div>
+                        <h3>Cloud Sync</h3>
+                        <p>All your data securely backed up and synced across your devices. Your pet records are
+                            always with you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section info-section">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Built with care</h2>
+                    <p class="section-subtitle">Pawfolio is built natively for iOS with a Python backend and reliable
+                        cloud infrastructure.</p>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center mb-5">
+                <div class="col-6 col-md-3">
+                    <div class="info-card">
+                        <div class="value">iOS</div>
+                        <div class="label">Native Swift App</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="info-card">
+                        <div class="value">SwiftUI</div>
+                        <div class="label">Modern UI Framework</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="info-card">
+                        <div class="value">Python</div>
+                        <div class="label">Backend API</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="info-card">
+                        <div class="value">PgSQL</div>
+                        <div class="label">Data Storage</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <span class="tech-badge">Swift</span>
+                <span class="tech-badge">SwiftUI</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">CloudKit</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Pawfolio &mdash; by <a href="index.html">SMLabs</a> &middot; <a href="https://github.com/sammymatt">GitHub</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
